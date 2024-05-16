@@ -10,19 +10,20 @@
 
 // @todo: Вывести карточки на страницу
 
-const CardTemplate = document.querySelector("#card-template").content;
+const cardTemplate = document.querySelector("#card-template").content;
 
 for (let i = 0; i < initialCards.length; i++) {
   const mediaCard = createCard(
     initialCards[i].link,
+    initialCards[i].alt,
     initialCards[i].name,
     removeCard
   );
   displayCards(mediaCard);
 }
 
-function createCard(image, title, deleteCard) {
-  const mediaCard = CardTemplate.querySelector(".places__item").cloneNode(true);
+function createCard(image, altText, title, deleteCard) {
+  const mediaCard = cardTemplate.querySelector(".places__item").cloneNode(true);
   const deleteButton = mediaCard.querySelector(".card__delete-button");
 
   deleteButton.addEventListener("click", function () {
@@ -30,6 +31,7 @@ function createCard(image, title, deleteCard) {
   });
 
   mediaCard.querySelector(".card__image").src = image;
+  mediaCard.querySelector(".card__image").alt = altText;
   mediaCard.querySelector(".card__title").textContent = title;
 
   return mediaCard;
